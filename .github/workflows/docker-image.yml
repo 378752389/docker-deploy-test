@@ -6,6 +6,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build java jar
+          run: |
+            mvn clean package
       - uses: actions/checkout@v2
       - name: Build Image
         run: docker build -t ${{ secrets.DOCKER_REPOSITORY }}:latest .
